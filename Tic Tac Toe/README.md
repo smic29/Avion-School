@@ -54,8 +54,8 @@ This is my submission for the Tic Tac Toe project given.
 
 ### Links
 
-- Project URL: 
-- Live Site URL: 
+- Project URL: [Github](https://github.com/smic29/Avion-School/tree/main/Tic%20Tac%20Toe)
+- Live Site URL: [Tic Tac Toe](https://smic29.github.io/Avion-School/Tic%20Tac%20Toe/)
 
 ## My Process
 ### Built with
