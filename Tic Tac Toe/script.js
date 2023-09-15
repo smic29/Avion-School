@@ -18,7 +18,15 @@ function isPlaying() {
     const msg = " IS PLAYING";
     const msgDisplay = document.querySelector('.player');
 
-    (whoIsPlaying === 0) ? msgDisplay.textContent = `X${msg}`: msgDisplay.textContent = `O${msg}`;
+    if(whoIsPlaying === 0) { 
+        msgDisplay.textContent = `X${msg}`
+        msgDisplay.classList.add('playerX');
+        msgDisplay.classList.remove('playerO');
+    } else {
+        msgDisplay.textContent = `O${msg}`;
+        msgDisplay.classList.add('playerO');
+        msgDisplay.classList.remove('playerX');
+    }
 }
 
 const boardLayout = [
@@ -115,6 +123,8 @@ function generateBoard(){
                 if(checkWin('X') || checkWin('O')) {
                     const msgDisplay = document.querySelector('.player')
                     msgDisplay.textContent = `${(checkWin('X')) ? 'X' : 'O'} Wins!` 
+                    msgDisplay.classList.remove('playerX')
+                    msgDisplay.classList.remove('playerO')
                     isGameActive = false;
                     // console.log(gameMoves);
                     resetBtn();
@@ -153,6 +163,8 @@ document.querySelector('.boardContainer').addEventListener('click',() => {
                 // alert ('No moves left. TIE GAME');
                 const msgDisplay = document.querySelector('.player')
                 msgDisplay.textContent = `GAME OVER: TIE`
+                msgDisplay.classList.remove('playerX')
+                msgDisplay.classList.remove('playerO')
                 clearInterval(tieChecker);
                 isGameActive = false;
                 // console.log(isGameActive);

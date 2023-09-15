@@ -61,10 +61,25 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: var(--spacing-unit-half);
 }
 
 .player span{
     color: var(--teal);
+}
+
+.playerO {
+    background-color: var(--darker-teal);
+    color: white;
+    padding: var(--spacing-unit-half);
+    transition: color 0.3s ease-in-out;
+}
+
+.playerX {
+    background-color: var(--teal);
+    color: black;
+    padding: var(--spacing-unit-half);
+    transition: color 0.3s ease-in-out;
 }
 
 .boardContainer {
@@ -108,6 +123,8 @@ h1 {
     border-radius: var(--spacing-unit-double);
     color: white;
     cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s;
 }
 
 .visibility-off {
@@ -138,6 +155,8 @@ h1 {
     padding-bottom: var(--spacing-unit-half);
     border-radius: var(--spacing-unit-double);
     cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s;
 }
 
 .previous {
@@ -148,6 +167,10 @@ h1 {
     background: radial-gradient(circle, var(--dark-teal), var(--darker-teal));
 }
 
+.previous:active, .next:active, .reset:active {
+    transform: scale(0.95);
+}
+
 .next {
     background: linear-gradient(to right, var(--teal), var(--dark-teal));
     border-start-start-radius: 0;
@@ -156,6 +179,7 @@ h1 {
 .disabled-button {
     background: linear-gradient(to bottom, gray, black);
     cursor: auto;
+    pointer-events: none;
 }
 
 @media screen and (max-width: 425px){
