@@ -17,6 +17,7 @@ This is my submission for the Tic Tac Toe project given.
     - [Built with](#built-with)
     - [What I learned](#what-i-learned)
     - [Continued Development](#continued-development)
+      - [Second major commit](#second-major-commit)
     - [Useful Resources](#useful-resources)
     - [Author](#author)
     - [Acknowledgements](#acknowledgements)
@@ -237,6 +238,16 @@ This part is where I think I learned the most about the scope of variables, func
 I think I'll continue to work on this project and style it a bit more to polish my CSS skills, as well as clean up the code if I can. I believe that with more practice and challenges I'd be able to gain a deeper understanding of how I should name my variables. I sometimes just name them on a whim, then regret that decision down the line when I end up having to use that variable on many different functions.
 
 I'll also start practicing writing functions on different files. Having most of the functions in one js file kind of makes it feel cramped and hard to read. I'll use this project to practice that and maybe have all js code organized and just use the main/index one to have the global variables. Maybe lol.
+
+#### Second major commit
+
+I added styles and transitions, as well as having a line strike on the winning boxes in relation to which direction the win happened. The line part was pretty challenging, and I had to re-do, or add more, to my code in relation with win-pattern checking.
+
+Overall, I like how the overall projects looks now and I'd like to incorporate more of what I'm learning on lectures on the project. 
+
+On the top of my head, I think the major things I added were the line strike on win pattern and the player choosing option. 
+
+I'll definitely be exploring more and will update if needed.
 
 ### Useful Resources
 

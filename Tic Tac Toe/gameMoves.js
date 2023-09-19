@@ -1,3 +1,5 @@
+import { checkWin } from "./win.js";
+
 export function historyBoard(gameMoves,moveIndex){
     // let latestMove = (gameMoves.length - 1 < 0) ? 0 : gameMoves.length - 1;
     let latestMove = moveIndex[0];
@@ -92,11 +94,13 @@ function historyBoardGenerator(gameMoves,latestMove,gameBoard){
                 } else {
                     box.textContent = '';
                 }
-
+                box.setAttribute('id', `box-${j}-${k}`);
+                box.classList.add('disable-hover');
                 gameBoard.appendChild(box);
             }
         }
-
+    checkWin('O',moveSet)
+    checkWin('X',moveSet)
 }
 
 function boardCleanse() {

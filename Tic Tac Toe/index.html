@@ -6,13 +6,22 @@
   <meta name="viewport" content="width=device-width">
   <title>Tic Tac Toe</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
-<body>
+<body class="choose-open">
+  <div class="choosePlayer">
+    <div class="chooseOne">
+      <div class="playerIsX">X</div>
+      <div class="playerIsO">O</div>
+    </div>
+    <div class="random"><i class="fa-solid fa-dice" style="color: #121212;"></i></div>
+  </div>
   <div class="mainContainer">
     <h1>TIC TAC TOE</h1>
-    <div class="player"></div>
-    <div class="boardContainer"></div>
+    <div class="player">Choose who starts first</div>
+    <div class="boardContainer">
+    </div>
     <div class="buttons"></div>
 
     <div class="historyBox visibility-off">

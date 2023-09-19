@@ -1,32 +1,12 @@
 import { gameHistory, isTie, clearLayout } from "./gameHistory.js";
 import { historyBoard } from "./gameMoves.js";
+import { checkWin } from "./win.js";
+import { isPlaying, xOrO, xChosen, oChosen, doneChoosing } from "./choosePlayer.js";
 
-// gameHistory();
-
-function xOrO() {
-    const num = Math.round(Math.random() + 1);
-    return num;
-}
-
-let whoIsPlaying = xOrO();
+let whoIsPlaying;
 
 function nextTurn() {
     (whoIsPlaying === 0) ? whoIsPlaying = 1 : whoIsPlaying = 0;
-}
-
-function isPlaying() {
-    const msg = " IS PLAYING";
-    const msgDisplay = document.querySelector('.player');
-
-    if(whoIsPlaying === 0) { 
-        msgDisplay.textContent = `X${msg}`
-        msgDisplay.classList.add('playerX');
-        msgDisplay.classList.remove('playerO');
-    } else {
-        msgDisplay.textContent = `O${msg}`;
-        msgDisplay.classList.add('playerO');
-        msgDisplay.classList.remove('playerX');
-    }
 }
 
 const boardLayout = [
@@ -34,46 +14,14 @@ const boardLayout = [
     ['','',''],
     ['','','']
 ];
-const winPattern = [];
-// Row Patterns
-for (let i = 0; i < boardLayout.length; i++){
-    const row = [];
-    for (let j = 0; j < boardLayout.length; j++){
-        row.push([i,j]);
-    }
-    winPattern.push(row);
-}
-// Column Patterns
-for (let i = 0; i < boardLayout.length; i++){
-    const col = [];
-    for (let j = 0; j < boardLayout.length; j++){
-        col.push([j,i]);
-    }
-    winPattern.push(col);
-}
-// Diagonal Patterns
-const diag1 = [];
-const diag2 = [];
-for (let i = 0; i < boardLayout.length; i++){
-    diag1.push([i,i]);
-    diag2.push([i, boardLayout.length - i - 1]);
-}
-winPattern.push(diag1);
-winPattern.push(diag2);
-// Check Array
-// console.log(winPattern);
 
-function checkWin(player) {
-    const msgDisplay = document.querySelector('.player')
-    for(const pattern of winPattern) {
-        const [a, b, c] = pattern;
-        if (boardLayout[a[0]][a[1]] === player && boardLayout[b[0]][b[1]] === player && boardLayout[c[0]][c[1]] === player){
-            return true;
-        }
-    }
-}
-
-const gameMoves = [];
+const gameMoves = [
+    [
+        ['','',''],
+        ['','',''],
+        ['','','']
+    ]
+];
 let latestMove = [0]; 
 
 let isGameActive = true;
@@ -96,57 +44,35 @@ function generateBoard(){
                 if (box.textContent === '') {
                     if (whoIsPlaying === 0) {
                         box.textContent = 'X'
-                        box.style.color = 'black'
                         boardLayout[i][j] = 'X'
-                        // if (checkWin('X')) {
-                        //     isGameActive = false;
-                        //     winMsg = 'X WINS!'
-                        // }
                     } else {
                         box.textContent = 'O'
                         boardLayout[i][j] = 'O'
-                        // if (checkWin('O')) {
-                        //     winMsg = 'O WINS!';
-                        //     isGameActive = false;   
-                        // } 
                     } 
-                        nextTurn();
+                        nextTurn(whoIsPlaying);
                         gameHistory(boardLayout,gameMoves,latestMove);
-                        // console.log(gameMoves);
-                        // console.log(isTie(boardLayout))
-                        isPlaying();
-                        // console.log(boardLayout)
+                        isPlaying(whoIsPlaying);
+                        console.log(whoIsPlaying)
                 } else {
                     alert('Invalid Move');
                 }
 
-                if(checkWin('X') || checkWin('O')) {
+                if(checkWin('X',boardLayout) || checkWin('O',boardLayout)) {
                     const msgDisplay = document.querySelector('.player')
-                    msgDisplay.textContent = `${(checkWin('X')) ? 'X' : 'O'} Wins!` 
+                    msgDisplay.textContent = `${(checkWin('X',boardLayout)) ? 'X' : 'O'} Wins!` 
                     msgDisplay.classList.remove('playerX')
                     msgDisplay.classList.remove('playerO')
                     isGameActive = false;
-                    // console.log(gameMoves);
                     resetBtn();
                     historyBoard(gameMoves,latestMove);
                 }
             })
+            box.setAttribute('id', `box-${i}-${j}`);
             container.appendChild(box);
-            // console.log(i+j);
         }
     }
     resolve();
 })
-
-// Reference of what I tried first:
-    // boardLayout.forEach((square) => {
-    //     square.forEach((dot) => {
-    //         const box = document.createElement('div');
-    //         box.classList.add('box');
-    //         container.appendChild(box);
-    //     })
-    // })
-
 }
 
 
@@ -159,15 +85,13 @@ let checkStatus = false;
 document.querySelector('.boardContainer').addEventListener('click',() => {
     if (!checkStatus) {
         const tieChecker = setInterval(() => {
-            if (isTie(boardLayout) && !(checkWin('X') || checkWin('O'))){
-                // alert ('No moves left. TIE GAME');
+            if (isTie(boardLayout) && !(checkWin('X',boardLayout) || checkWin('O',boardLayout))){
                 const msgDisplay = document.querySelector('.player')
                 msgDisplay.textContent = `GAME OVER: TIE`
                 msgDisplay.classList.remove('playerX')
                 msgDisplay.classList.remove('playerO')
                 clearInterval(tieChecker);
                 isGameActive = false;
-                // console.log(isGameActive);
                 historyBoard(gameMoves,latestMove);
                 resetBtn();
             }
@@ -185,7 +109,6 @@ function resetBtn() {
         reset.classList.add('visibility-on');
         historyButtons.classList.remove('visibility-off');
         historyButtons.classList.add('visibility-on');
-        // console.log('Im being run through');
     }
 }
 
@@ -203,17 +126,45 @@ resetButton.addEventListener('click', () => {
     historyButtons.classList.add('visibility-off');
     checkStatus = false;
     isGameActive = true;
-    gameMoves.length = 0;
+    gameMoves.length = 1;
     clearLayout(boardLayout);
-    isPlaying();
+    isPlaying(whoIsPlaying);
+})
+
+const xButton = document.querySelector('.playerIsX');
+const oButton = document.querySelector('.playerIsO');
+const randomButton = document.querySelector('.random');
+
+xButton.addEventListener('click', () => {
+    whoIsPlaying = xChosen();
+    doneChoosing();
+    isPlaying(whoIsPlaying);
+})
+
+oButton.addEventListener('click', () => {
+    whoIsPlaying = oChosen();
+    doneChoosing();
+    isPlaying(whoIsPlaying);
+})
+
+randomButton.addEventListener('click', ()=> {
+    whoIsPlaying = xOrO();
+    doneChoosing();
+    isPlaying(whoIsPlaying);
+})
+
+randomButton.addEventListener('mouseenter',()=> {
+    randomButton.classList.add('fa-bounce');
+    const icon = document.querySelector('.fa-solid');
+    icon.style.color = '#ac3939';
+})
+
+randomButton.addEventListener('mouseleave', () => {
+    randomButton.classList.remove('fa-bounce');
+    const icon = document.querySelector('.fa-solid');
+    icon.style.color = ''
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-    isPlaying();
-    startGame();  
+    startGame();
 });
-
-// document.addEventListener('click',() => {
-//     nextTurn();
-//     isPlaying();
-// })
