@@ -1,7 +1,8 @@
 import { gameHistory, isTie, clearLayout } from "./gameHistory.js";
 import { historyBoard } from "./gameMoves.js";
-import { checkWin } from "./win.js";
+import { checkWin, winStreakAdd, displayWinner } from "./win.js";
 import { isPlaying, xOrO, xChosen, oChosen, doneChoosing } from "./choosePlayer.js";
+import { addWinTally, updateTally} from "./winTally.js";
 
 let whoIsPlaying;
 
@@ -44,6 +45,7 @@ function generateBoard(){
                 if (box.textContent === '') {
                     if (whoIsPlaying === 0) {
                         box.textContent = 'X'
+                        box.style.color = '#FF6969'
                         boardLayout[i][j] = 'X'
                     } else {
                         box.textContent = 'O'
@@ -52,19 +54,28 @@ function generateBoard(){
                         nextTurn(whoIsPlaying);
                         gameHistory(boardLayout,gameMoves,latestMove);
                         isPlaying(whoIsPlaying);
-                        console.log(whoIsPlaying)
                 } else {
-                    alert('Invalid Move');
+                    const alert = document.querySelector('.invalidBox');
+                    alert.classList.add('open');
+                    document.body.classList.add('choose-open');
                 }
 
                 if(checkWin('X',boardLayout) || checkWin('O',boardLayout)) {
+                    if(checkWin('X',boardLayout)){
+                        winStreakAdd('X');
+                        addWinTally('X');
+                    } else {
+                        winStreakAdd('O');
+                        addWinTally('O');
+                    }
                     const msgDisplay = document.querySelector('.player')
-                    msgDisplay.textContent = `${(checkWin('X',boardLayout)) ? 'X' : 'O'} Wins!` 
+                    msgDisplay.textContent = `${(checkWin('X',boardLayout)) ? displayWinner('X') : displayWinner('O')}` 
                     msgDisplay.classList.remove('playerX')
                     msgDisplay.classList.remove('playerO')
                     isGameActive = false;
                     resetBtn();
                     historyBoard(gameMoves,latestMove);
+                    updateTally();
                 }
             })
             box.setAttribute('id', `box-${i}-${j}`);
@@ -78,6 +89,7 @@ function generateBoard(){
 
 async function startGame() {
     await generateBoard();
+    updateTally();
 }
 
 
@@ -164,6 +176,19 @@ randomButton.addEventListener('mouseleave', () => {
     const icon = document.querySelector('.fa-solid');
     icon.style.color = ''
 })
+
+const invalidMsg = document.querySelector('.invalidBox');
+
+invalidMsg.addEventListener('click', () => {
+    invalidMsg.classList.remove('open');
+    document.body.classList.remove('choose-open');
+})
+
+// const xWins = document.querySelector('.xWinCount');
+// const oWins = document.querySelector('.oWinCount');
+
+// xWins.textContent = giveWinTally('X');
+// oWins.textContent = giveWinTally('O');
 
 document.addEventListener('DOMContentLoaded', () => {
     startGame();

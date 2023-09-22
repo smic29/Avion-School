@@ -10,15 +10,6 @@ export function gameHistory(currentLayout, historyVariable,latestMove) {
     }
     historyVariable.push(boardCopy);
     latestMove[0] = historyVariable.length - 1;
-    console.log(latestMove);
-    // I turned the global variable latestMove into an array since I was
-    // getting issues with setting it as a number. Everytime historyBoard
-    // was invoked, it would revert to 0 for some reason.
-    // turning it into a one element array then adjusting that through
-    // the gameHistory function, I was able to save the length value
-    // properly.
-    
-    // console.log('hello world');
 }
 
 export function isTie(currentLayout) {

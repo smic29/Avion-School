@@ -1,31 +1,20 @@
 import { checkWin } from "./win.js";
 
 export function historyBoard(gameMoves,moveIndex){
-    // let latestMove = (gameMoves.length - 1 < 0) ? 0 : gameMoves.length - 1;
     let latestMove = moveIndex[0];
-    // console.log(gameMoves.length);
-    // console.log(latestMove);
-    // console.log(latestMove > 0)
-    console.log(latestMove < gameMoves.length - 1)
     const gameBoard = document.querySelector('.boardContainer');
+
     while (gameBoard.firstChild){
         gameBoard.removeChild(gameBoard.firstChild);
     }
-    // console.log(`latestMove here is: ${latestMove}`);
     function next(){
         if(latestMove < gameMoves.length - 1){
-            // console.log(latestMove)
             latestMove++;
-            // console.log(latestMove);
             boardCleanse();
             historyBoardGenerator(gameMoves,latestMove,gameBoard);
             buttonStatus();
         }
     }
-// Event Listeners had to be here since putting them in index.js would
-// cause them to read the initializer(latestMove) from the previous
-// board generation (in this case, the first gameMove.length = 0) after
-// a win.
     const nextButton = document.querySelector('.next');
     nextButton.addEventListener('click',() => {
         next();
@@ -33,9 +22,7 @@ export function historyBoard(gameMoves,moveIndex){
 
     function prev(){
         if(latestMove > 0){
-            // console.log(gameMoves.length)
             latestMove--;
-            // console.log(latestMove);
             boardCleanse();
             historyBoardGenerator(gameMoves,latestMove,gameBoard);
             buttonStatus();
@@ -88,7 +75,7 @@ function historyBoardGenerator(gameMoves,latestMove,gameBoard){
 
                 if (row[k] === 'X'){
                     box.textContent = 'X';
-                    box.style.color = 'black'
+                    box.style.color = '#FF6969';
                 } else if (row[k] === 'O') {
                     box.textContent = 'O';
                 } else {

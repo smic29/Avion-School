@@ -33,6 +33,29 @@ winPattern.push(diag2);
 // Check Array
 // console.log(winPattern);
 
+const winStreakX = [];
+const winStreakO = [];
+
+export function winStreakAdd(player){
+    if (player === 'X'){
+        winStreakX.push('X');
+        winStreakO.length = 0;
+        // console.log(`X wins: ${winStreakX.length}`)
+    } else {
+        winStreakO.push('O');
+        winStreakX.length = 0;
+        // console.log(`X wins: ${winStreakX.length}`)
+    }
+}
+
+export function displayWinner(player){
+    if (player === 'X'){
+        return (winStreakX.length > 1) ? `X has won ${winStreakX.length} times in a row!!`: 'X Wins!'
+    } else {
+        return (winStreakO.length > 1) ? `O has won ${winStreakO.length} times in a row!!`: 'O Wins!'
+    }
+}
+
 export function checkWin(player,board = boardLayout,winPatterns = winPattern) {
     for(const pattern of winPattern) {
         const [a, b, c] = pattern;
@@ -93,18 +116,7 @@ export function checkWin(player,board = boardLayout,winPatterns = winPattern) {
                     }
                     winBox.appendChild(winLine);
                 });
-                return true;
+            return true;
         }
     }
-}
-
-function showWinLine(orientation){
-    const winLine = document.querySelector('.win-line');
-    winLine.classList.add(orientation);
-    winLine.style.display = 'block';
-}
-
-function hideWinLine(){
-    const winLine = document.querySelector('.win-line');
-    winLine.style.display = 'none';
 }

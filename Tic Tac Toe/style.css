@@ -56,18 +56,51 @@ body {
 .choosePlayer {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     min-width: 150px;
+    min-height: 112.5px;
     border-radius: var(--spacing-unit);
     border: 1px solid var(--darker-teal);
     padding: var(--spacing-unit-half);
     z-index: 1000;
     position: fixed;
-    top: 30%;
+    top: 37%;
     background-color: var(--teal);
     box-shadow: 0px 0px 10px rgba(3, 3, 3, 0.9);
     opacity: 1;
-    transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in-out;
     user-select: none;
+}
+
+.invalidBox {
+    z-index: 1000;
+    top: 40%;
+    position: fixed;
+    background-color: var(--teal);
+    padding: var(--spacing-unit);
+    padding-top: var(--spacing-unit-half);
+    border-radius: var(--spacing-unit-half);
+    box-shadow: 0px 0px 10px rgba(3, 3, 3, 0.9);
+    min-height: 25px;
+    font-family: var(--font-family-one);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    user-select: none;
+}
+
+.invalidBox.open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3 ease-in-out;
+}
+
+.invalidBox span{
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    font-weight: bold;
+    font-size: 0.65rem;
 }
 
 .offDisplay {
@@ -293,6 +326,28 @@ h1 {
     pointer-events: none;
 }
 
+.winTally {
+    display: flex;
+    min-width: 550px;
+    justify-content: space-between;
+    position: fixed;
+    top: 33.5%;
+    z-index: 0;
+    opacity: 0.09;
+    font-size: 7em;
+    font-family: var(--font-family-one);
+    user-select: none;
+    pointer-events: none;
+    text-align: center;
+}
+
+.x-border, .o-border {
+    border-bottom: 2px solid black;
+    padding-left: var(--spacing-unit-half);
+    padding-right: var(--spacing-unit-half);
+}
+
+
 @media screen and (max-width: 425px){
     h1 {
         font-size: 3em;
@@ -304,5 +359,11 @@ h1 {
 
     .historyBox {
         width: 300px;
+    }
+
+    .winTally {
+        min-width: 300px;
+        top: 35%;
+        opacity: 0.06;
     }
 }
