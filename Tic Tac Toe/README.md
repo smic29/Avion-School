@@ -254,6 +254,8 @@ I'll definitely be exploring more and will update if needed.
 
 I finalize the styles for the web page and added some personal features for an added challenge to myself. I also encountered some issues with the final commit, in relation with just updating the markdown file, so I'm also learning how to deal with and fix repository issues. 
 
+I managed to fix the issues, but I don't see the untracked statuses on my folder now. This readme is probably not the place to add this, but hey, learning process. This should be the final commit for this project, sad that the screenshot updates had to be deleted.
+
 ### Useful Resources
 
 - [ChatGPT](https://chat.openai.com) - This is what I mostly used for questions about the code I currently have written. Though, as much as possible, I'd only refer to it like Google. It's important that I know how my code should be, but when I'm really confused and stuck, I'd refer to it and ask how it would write the code. I like treating AI as only an extension of my brain and not think for me.
