@@ -12,7 +12,6 @@ This is my submission for the Tic Tac Toe project given.
       - [Phase 2:](#phase-2)
       - [Notes:](#notes)
     - [Screenshot](#screenshot)
-      - [Screenshots of Submitted Project](#screenshots-of-submitted-project)
     - [Links](#links)
   - [My Process](#my-process)
     - [Built with](#built-with)
@@ -54,9 +53,6 @@ This is my submission for the Tic Tac Toe project given.
 
 ![](Images/web1440.jpg)
 ![](Images/mobile375.jpg)
-#### Screenshots of Submitted Project
-![](Images/mobile-finalsubmit.jpg)
-![](Images/web-finalsubmit.jpg)
 
 ### Links
 
@@ -256,9 +252,7 @@ I'll definitely be exploring more and will update if needed.
 
 #### Final Submission
 
-After tinkering with different styles and adding several different functionalities to challenge myself, I find the project complete and ready for submission. I added a win streak display, as well as a tally for X and O wins. To be honest, I still feel kinda weird about showing the tally as the background for the board, but overall I think it looks fine for screen widths that are less than or equal to 425px. 
-
-Overall, I tried to incorporate the things I've learned through daily lessons while doing the project. Some lectures gave me some insipiration and I'm still awed by the fact that I am continuously inspired to add more when I learn more stuff. But, I think this is it for this project and I'll be moving on and focusing on the next challenge ahead.
+I finalize the styles for the web page and added some personal features for an added challenge to myself. I also encountered some issues with the final commit, in relation with just updating the markdown file, so I'm also learning how to deal with and fix repository issues. 
 
 ### Useful Resources
 
