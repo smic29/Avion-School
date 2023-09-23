@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tic Tac Toe</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="choose-open">
+  <div class="choosePlayer">
+    <div class="chooseOne">
+      <div class="playerIsX">X</div>
+      <div class="playerIsO">O</div>
+    </div>
+    <div class="random"><i class="fa-solid fa-dice" style="color: #121212;"></i></div>
+  </div>
+  <div class="mainContainer">
+    <h1>TIC TAC TOE</h1>
+    <div class="player">Choose who starts first</div>
+    <div class="boardContainer">
+    </div>
+    <div class="buttons"></div>
+
+    <div class="historyBox visibility-off">
+      <div class="previous">Prev</div>
+      <div class="next">Next</div>
+    </div>
+    <div class="reset visibility-off">Reset</div>
+  </div>
+
+  <div class="invalidBox">
+    <p>Box is taken, choose another one.</p>
+    <span>click this box to continue</span>
+  </div>
+
+  <div class="winTally">
+    <div class="xTally">
+      <p class="x-border">X</p>
+      <p class="xWinCount"></p>
+    </div>
+    <div class="oTally">
+      <p class="o-border">O</p>
+      <p class="oWinCount"></p>
+    </div>
+  </div>
+  
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
